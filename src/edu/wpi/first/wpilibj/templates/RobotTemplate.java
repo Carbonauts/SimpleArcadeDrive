@@ -9,7 +9,7 @@ package edu.wpi.first.wpilibj.templates;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,29 +20,32 @@ import edu.wpi.first.wpilibj.RobotDrive;
  */
 public class RobotTemplate extends IterativeRobot {
     
-    Joystick myJoystick = new Joystick(1);
-    RobotDrive robotDrive = new RobotDrive(1,2);
+    Talon windowmotor;
+    Joystick joystick;
     
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-
+        windowmotor = new Talon(2);
+        joystick = new Joystick(1);
     }
 
     /**
      * This function is called periodically during autonomous
      */
     public void autonomousPeriodic() {
-
+        
     }
 
     /**
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        robotDrive.arcadeDrive(myJoystick.getX()*((.5*myJoystick.getThrottle())+.5), myJoystick.getY());
+        while( isEnabled() && isOperatorControl()){
+            windowmotor.set(joystick.getX());
+        }
     }
     
     /**
