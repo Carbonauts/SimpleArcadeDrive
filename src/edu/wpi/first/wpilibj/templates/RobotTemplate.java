@@ -52,6 +52,6 @@ public class RobotTemplate extends IterativeRobot {
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
-    
+        //WE NEED SOME CODE UP IN THIS BLOCK
     }
 }
